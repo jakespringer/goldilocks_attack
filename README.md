@@ -7,7 +7,7 @@ components. In particular, we have the following:
   a number of internals useful for gradient-based attacks.
 * `python/{frequency,l2}_dictionary.py`, which generates the perturbation
   dictionaries.
-* `java/../PerturbVariable`, which modifies Java source code with a perturbation
+* `java/../RenameVariable.java`, which modifies Java source code with a perturbation
 * `python/perturb_dataset.py`, which runs the perturbation code on an entire
   dataset.
 

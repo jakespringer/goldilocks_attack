@@ -3,28 +3,39 @@ from cd import cd
 import os
 import sys
 import shutil
+import argparse
 
-try:
-    assert(len(sys.argv) == 2)
-    dictionary_size = int(sys.argv[1])
-except:
-    print('Usage: python automate_frequency.py [topk]')
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--topk', type=int, required=True)
+parser.add_argument('--dictionary', required=True)
+args = parser.parse_args()
+
+dictionary_size = args.topk
+dictionary_type = args.dictionary
+
+if dictionary_type not in ['frequency', 'l2']:
+    print('Dictionary type {} is unsupported'.format(dictionary_type))
     exit(1)
 
 code2seq_directory = '/home/ubuntu/code2seq'
 code2seq_output_dir = os.path.join(code2seq_directory, 'models/java-large-model')
 code2seq_model = os.path.join(code2seq_output_dir, 'model_iter52.release')
 
-output_dictionary_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/frequency-dictionary'
-output_perturbation_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/java-small-frequency'
+output_dictionary_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/{}-dictionary'.format(dictionary_type)
+output_perturbation_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/java-small-{}'.format(dictionary_type)
 output_perturbation_type = 'same'
-output_preprocess_prefix = 'frequency'
+output_preprocess_prefix = dictionary_type
 output_results_dir = '/home/ubuntu/code2seq_attack_Jake_Springer/data/results'
 
 if __name__ == '__main__':
     # generate dictionary
+    if dictionary_type == 'frequency':
+        dict_script = 'frequency_dictionary.py'
+    elif dictionary_type == 'l2':
+        dict_script = 'l2_dictionary.py'
     dictionary_path = output_dictionary_prefix + '-' + str(dictionary_size) + '.txt'
-    dictionary_output = sp.check_output(['python', 'frequency_dictionary.py', str(dictionary_size)])
+    dictionary_output = sp.check_output(['python', dict_script, str(dictionary_size)])
     with open(dictionary_path, 'wb') as f:
         f.write(dictionary_output)
 

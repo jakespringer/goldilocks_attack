@@ -18,11 +18,10 @@ import reader
 import _pickle as pickle
 
 if __name__ == '__main__':
-    try:
-        topk = int(sys.argv[1])
-    except:
-        print('l2_dictionary.py [top k]', file=sys.stderr)
-        exit(1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('topk', type=int)
+    args = parser.parse_args()
+    topk = args.topk
     
     # We want to print to stdout exactly what we want to output, so forward
     # everything else to stderr. Hacky, but works.

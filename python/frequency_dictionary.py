@@ -1,14 +1,14 @@
 import pickle
 import numpy as np
 import sys
-
+import argparse
 
 if __name__ == '__main__':
-    try:
-        topk = int(sys.argv[1])
-    except:
-        print('frequency_dictionary.py [top k]', file=sys.stderr)
-        exit(1)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('topk', type=int)
+    args = parser.parse_args()
+    topk = args.topk
     
     with open('{}'.format('../data/java-large-model/java-large.dict.c2s'), 'rb') as file:
         subtoken_count = pickle.load(file)

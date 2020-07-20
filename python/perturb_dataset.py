@@ -1,17 +1,25 @@
 import sys
 import subprocess
 import os
+import argparse
 
 if __name__ == '__main__':
-    if len(sys.argv) != 4 or sys.argv[3] not in ['single', 'same', 'different']:
-        print('perturb_dataset.py [output] [dictionary] [single|same|different]', file=sys.stderr)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('output')
+    parser.add_argument('dictionary')
+    parser.add_argument('concat')
+    args = parser.parse_args()
+
+    if args.concat not in ['single', 'same', 'different']:
+        print('Concatenation strategy needs to be \"single\", \"same\", or \"different\"', file=sys.stderr)
         exit(1)
     
     java_perturb_jar = '../java/target/rename-variable-1.0-SNAPSHOT-shaded.jar'
     input_directory = '../data/java-small/test'
-    output_directory = sys.argv[1]
-    dictionary = sys.argv[2]
-    perturb_type = sys.argv[3]
+    output_directory = args.output
+    dictionary = args.dictionary
+    perturb_type = args.concat
     
     projects = os.listdir(input_directory)
     

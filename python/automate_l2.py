@@ -8,23 +8,23 @@ try:
     assert(len(sys.argv) == 2)
     dictionary_size = int(sys.argv[1])
 except:
-    print('Usage: python automate_frequency.py [topk]')
+    print('Usage: python automate_l2.py [topk]')
     exit(1)
 
 code2seq_directory = '/home/ubuntu/code2seq'
 code2seq_output_dir = os.path.join(code2seq_directory, 'models/java-large-model')
 code2seq_model = os.path.join(code2seq_output_dir, 'model_iter52.release')
 
-output_dictionary_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/frequency-dictionary'
-output_perturbation_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/java-small-frequency'
+output_dictionary_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/l2-dictionary'
+output_perturbation_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/java-small-l2'
 output_perturbation_type = 'same'
-output_preprocess_prefix = 'frequency'
+output_preprocess_prefix = 'l2'
 output_results_dir = '/home/ubuntu/code2seq_attack_Jake_Springer/data/results'
 
 if __name__ == '__main__':
     # generate dictionary
     dictionary_path = output_dictionary_prefix + '-' + str(dictionary_size) + '.txt'
-    dictionary_output = sp.check_output(['python', 'frequency_dictionary.py', str(dictionary_size)])
+    dictionary_output = sp.check_output(['python', 'l2_dictionary.py', str(dictionary_size)])
     with open(dictionary_path, 'wb') as f:
         f.write(dictionary_output)
 

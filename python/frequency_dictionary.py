@@ -3,17 +3,25 @@ import numpy as np
 import sys
 import argparse
 
-if __name__ == '__main__':
+# CHANGE THESE PARAMETERS ###############################################
 
+# path to the dictionary in the dataset
+word_dictionary = '../data/java-large-model/java-large.dict.c2s'
+
+# path to the dictionary in the trained model
+model_dictionary = '../data/java-large-model/model_iter52.release.dict'
+#########################################################################
+
+if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('topk', type=int)
     args = parser.parse_args()
     topk = args.topk
     
-    with open('{}'.format('../data/java-large-model/java-large.dict.c2s'), 'rb') as file:
+    with open('{}'.format(word_dictionary), 'rb') as file:
         subtoken_count = pickle.load(file)
     
-    with open('{}'.format('../data/java-large-model/model_iter52.release.dict'), 'rb') as file:
+    with open('{}'.format(model_dictionary), 'rb') as file:
         _ = pickle.load(file) # ignore first section
         index_to_subtoken = pickle.load(file)
         

@@ -17,6 +17,11 @@ from extractor import Extractor
 import reader
 import _pickle as pickle
 
+# CHANGE THIS ###################################################
+# path to the .release of the trained model
+model_release = '../data/java-large-model/model_iter52.release'
+#################################################################
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('topk', type=int)
@@ -33,10 +38,6 @@ if __name__ == '__main__':
     # of the default parameters appropriately given command line arguments.
     # Therefore, we take advantage of that and inject command line arguemnts
     # to generate the code2seq config.
-    sys.argv = [sys.argv[0], 
-                '--load', '../data/java-large-model/model_iter52.release', 
-                '--predict']
-    
     parser = ArgumentParser()
     parser.add_argument("-d", "--data", dest="data_path",
                         help="path to preprocessed dataset", required=False)
@@ -53,7 +54,9 @@ if __name__ == '__main__':
     parser.add_argument('--predict', action='store_true')
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--seed', type=int, default=239)
-    args = parser.parse_args()
+    args = parser.parse_args([sys.argv[0],
+                '--load', model_release,
+                '--predict'])
     
     np.random.seed(args.seed)
     tf.set_random_seed(args.seed)

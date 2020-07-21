@@ -18,15 +18,26 @@ if dictionary_type not in ['frequency', 'l2']:
     print('Dictionary type {} is unsupported'.format(dictionary_type))
     exit(1)
 
+# MODIFY THESE PARAMETERS TO FIT YOUR INSTALLATION ###################################################################
+
+# code2seq base directory
 code2seq_directory = '/home/ubuntu/code2seq'
+
+# trained model base directory
 code2seq_output_dir = os.path.join(code2seq_directory, 'models/java-large-model')
+
+# .release file of trained model
 code2seq_model = os.path.join(code2seq_output_dir, 'model_iter52.release')
 
+# below are a number of output files; you can set them to whatever you want
 output_dictionary_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/{}-dictionary'.format(dictionary_type)
 output_perturbation_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/java-small-{}'.format(dictionary_type)
 output_perturbation_type = 'same'
 output_preprocess_prefix = dictionary_type
+
+# this is where the final results go
 output_results_dir = '/home/ubuntu/code2seq_attack_Jake_Springer/data/results'
+#######################################################################################################################
 
 if __name__ == '__main__':
     # generate dictionary

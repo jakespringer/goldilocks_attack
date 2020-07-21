@@ -3,6 +3,11 @@ import subprocess
 import os
 import argparse
 
+# CHANGE THIS #####################################
+# path to the directory of .java files to perturb
+input_directory = '../data/java-small/test'
+###################################################
+
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
@@ -16,7 +21,6 @@ if __name__ == '__main__':
         exit(1)
     
     java_perturb_jar = '../java/target/rename-variable-1.0-SNAPSHOT-shaded.jar'
-    input_directory = '../data/java-small/test'
     output_directory = args.output
     dictionary = args.dictionary
     perturb_type = args.concat

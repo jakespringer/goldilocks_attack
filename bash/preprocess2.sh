@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 ###########################################################
+# Note: this is a modified version of the preprocessing script that
+# can be found with an installation of code2seq, except with command
+# line parameters. This file needs to be copied to the directiory of
+# your installation of code2seq.
+###########################################################
 # Change the following values to preprocess a new dataset.
 # TRAIN_DIR, VAL_DIR and TEST_DIR should be paths to      
 #   directories containing sub-directories with .java files

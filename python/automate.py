@@ -60,7 +60,7 @@ if __name__ == '__main__':
        sp.Popen(['bash', 'preprocess2.sh', output_perturbation_path, output_preprocess_name]).wait()
         
     # remove methods without local variables
-    p = sp.check_output(['python', 'remove_nolocalvars.py', os.path.join(code2seq_directory, 'data', output_preprocess_name, output_preprocess_name + '.test.c2s')])
+    p = sp.check_output(['python', 'filter_has_local_variables.py', os.path.join(code2seq_directory, 'data', output_preprocess_name, output_preprocess_name + '.test.c2s')])
     open(os.path.join(code2seq_directory, 'data', output_preprocess_name, output_preprocess_name + '.test.nolocalvars.c2s'), 'wb').write(p)
 
     # capture results

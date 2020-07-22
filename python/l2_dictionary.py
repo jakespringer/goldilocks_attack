@@ -19,11 +19,11 @@ import _pickle as pickle
 
 # CHANGE THIS ###################################################
 # path to the .release of the trained model
-model_release = '../data/java-large-model/model_iter52.release'
+model_release = '/home/jspring1/MIT_Workspace/code2seq/models/java-large-model/model_iter52.release'
 #################################################################
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = ArgumentParser()
     parser.add_argument('topk', type=int)
     args = parser.parse_args()
     topk = args.topk
@@ -54,8 +54,7 @@ if __name__ == '__main__':
     parser.add_argument('--predict', action='store_true')
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--seed', type=int, default=239)
-    args = parser.parse_args([sys.argv[0],
-                '--load', model_release,
+    args = parser.parse_args(['--load', model_release,
                 '--predict'])
     
     np.random.seed(args.seed)

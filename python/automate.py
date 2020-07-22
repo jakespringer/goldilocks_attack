@@ -21,7 +21,7 @@ if dictionary_type not in ['frequency', 'l2']:
 # MODIFY THESE PARAMETERS TO FIT YOUR INSTALLATION ###################################################################
 
 # code2seq base directory
-code2seq_directory = '/home/ubuntu/code2seq'
+code2seq_directory = '/home/jspring1/MIT_Workspace/code2seq'
 
 # trained model base directory
 code2seq_output_dir = os.path.join(code2seq_directory, 'models/java-large-model')
@@ -30,17 +30,18 @@ code2seq_output_dir = os.path.join(code2seq_directory, 'models/java-large-model'
 code2seq_model = os.path.join(code2seq_output_dir, 'model_iter52.release')
 
 # below are a number of output files; you can set them to whatever you want
-output_dictionary_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/{}-dictionary'.format(dictionary_type)
-output_perturbation_prefix = '/home/ubuntu/code2seq_attack_Jake_Springer/data/java-small-{}'.format(dictionary_type)
+output_dictionary_prefix = '/home/jspring1/MIT_Workspace/code2seq_attack_Jake_Springer/data/{}-dictionary'.format(dictionary_type)
+output_perturbation_prefix = '/home/jspring1/MIT_Workspace/code2seq_attack_Jake_Springer/data/java-small-{}'.format(dictionary_type)
 output_perturbation_type = 'same'
 output_preprocess_prefix = dictionary_type
 
 # this is where the final results go
-output_results_dir = '/home/ubuntu/code2seq_attack_Jake_Springer/data/results'
+output_results_dir = '/home/jspring1/MIT_Workspace/code2seq_attack_Jake_Springer/data/results'
 #######################################################################################################################
 
 if __name__ == '__main__':
     # generate dictionary
+    print('Generating dictionary')
     if dictionary_type == 'frequency':
         dict_script = 'frequency_dictionary.py'
     elif dictionary_type == 'l2':
@@ -51,19 +52,23 @@ if __name__ == '__main__':
         f.write(dictionary_output)
 
     # perturb dataset
+    print('Perturbing dataset')
     output_perturbation_path = output_perturbation_prefix + '-' + output_perturbation_type    
     sp.Popen(['python', 'perturb_dataset.py', output_perturbation_path, dictionary_path, output_perturbation_type]).wait()
 
     # preprocess dataset
+    print('Preprocessing dataset')
     output_preprocess_name = output_preprocess_prefix + '-' + str(dictionary_size)
     with cd(code2seq_directory):
        sp.Popen(['bash', 'preprocess2.sh', output_perturbation_path, output_preprocess_name]).wait()
         
     # remove methods without local variables
+    print('Filtering for methods with local variables')
     p = sp.check_output(['python', 'filter_has_local_variables.py', os.path.join(code2seq_directory, 'data', output_preprocess_name, output_preprocess_name + '.test.c2s')])
     open(os.path.join(code2seq_directory, 'data', output_preprocess_name, output_preprocess_name + '.test.nolocalvars.c2s'), 'wb').write(p)
 
     # capture results
+    print('Computing results')
     with cd(code2seq_directory):
         os.makedirs(os.path.join(output_results_dir, output_preprocess_name), exist_ok=True)
         p = sp.check_output(['python', 'code2seq.py', '--load', code2seq_model, '--test', 

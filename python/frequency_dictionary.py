@@ -6,10 +6,10 @@ import argparse
 # CHANGE THESE PARAMETERS ###############################################
 
 # path to the dictionary in the dataset
-word_dictionary = '../data/java-large-model/java-large.dict.c2s'
+word_dictionary = '/home/jspring1/MIT_Workspace/code2seq/models/java-large-model/java-large.dict.c2s'
 
 # path to the dictionary in the trained model
-model_dictionary = '../data/java-large-model/model_iter52.release.dict'
+model_dictionary = '/home/jspring1/MIT_Workspace/code2seq/models/java-large-model/model_iter52.release.dict'
 #########################################################################
 
 if __name__ == '__main__':

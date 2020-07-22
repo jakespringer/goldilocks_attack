@@ -5,7 +5,7 @@ import argparse
 
 # CHANGE THIS #####################################
 # path to the directory of .java files to perturb
-input_directory = '../data/java-small/test'
+input_directory = '/home/jspring1/MIT_Workspace/code2seq/data/java-small/test'
 ###################################################
 
 if __name__ == '__main__':

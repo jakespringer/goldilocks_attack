@@ -2,11 +2,10 @@ import sys
 import subprocess
 import os
 import argparse
+import attack_config
 
-# CHANGE THIS #####################################
 # path to the directory of .java files to perturb
-input_directory = '/home/jspring1/MIT_Workspace/code2seq/data/java-small/test'
-###################################################
+input_directory = attack_config['input_dataset']
 
 def process_output(process, project, fname, output_directory):
     out, err = process.communicate()

@@ -19,10 +19,8 @@ import _pickle as pickle
 import attack_config
 
 
-# CHANGE THIS ###################################################
 # path to the .release of the trained model
-model_release = attack_config.CONFIG['code2seq_model']
-#################################################################
+model_release = os.path.abspath(attack_config.CONFIG['code2seq_model'])
 
 if __name__ == '__main__':
     parser = ArgumentParser()

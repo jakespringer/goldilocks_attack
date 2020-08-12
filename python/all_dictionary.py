@@ -1,4 +1,5 @@
 import pickle
+import os
 import numpy as np
 import sys
 import argparse
@@ -7,7 +8,7 @@ import attack_config
 
 
 # path to the dictionary in the trained model
-model_dictionary = attack_config.CONFIG['code2seq_model'] + '.dict'
+model_dictionary = os.path.abspath(attack_config.CONFIG['code2seq_model'] + '.dict')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

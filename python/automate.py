@@ -22,21 +22,21 @@ if dictionary_type not in ['frequency', 'l2', 'random', 'l2_single']:
     exit(1)
 
 # code2seq base directory
-code2seq_directory = attack_config.CONFIG['code2seq_directory']
+code2seq_directory = os.path.abspath(attack_config.CONFIG['code2seq_directory'])
 
 # trained model base directory
-code2seq_output_dir = attack_config.CONFIG['code2seq_model_dir']
+code2seq_output_dir = os.path.abspath(attack_config.CONFIG['code2seq_model_dir'])
 
 # trained model
-code2seq_model = attack_config.CONFIG['code2seq_model']
+code2seq_model = os.path.abspath(attack_config.CONFIG['code2seq_model'])
 
 # below are a number of output files; you can set them to whatever you want
-output_dictionary_prefix = attack_config.CONFIG['output_vocabulary_prefix'] + '-' + dictionary_type + '-' + str(dictionary_size)
+output_dictionary_prefix = os.path.abspath(attack_config.CONFIG['output_vocabulary_prefix'] + '-' + dictionary_type + '-' + str(dictionary_size))
 output_perturbation_prefix = attack_config.CONFIG['output_perturbation_prefix'] + '-' + dictionary_type + '-' + output_perturbation_type + '-' + str(dictionary_size)
 output_preprocess_prefix = dictionary_type
 
 # this is where the final results go
-output_results_dir = attack_config.CONFIG['output_results_dir']
+output_results_dir = os.path.abspath(attack_config.CONFIG['output_results_dir'])
 
 if __name__ == '__main__':
     # generate dictionary

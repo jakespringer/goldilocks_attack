@@ -70,9 +70,10 @@ ${PYTHON} preprocess.py --train_data ${TRAIN_DATA_FILE} --test_data ${TEST_DATA_
   --target_vocab_size ${TARGET_VOCAB_SIZE} --subtoken_histogram ${SOURCE_SUBTOKEN_HISTOGRAM} \
   --node_histogram ${NODE_HISTOGRAM_FILE} --target_histogram ${TARGET_HISTOGRAM_FILE} --output_name data/${DATASET_NAME}/${DATASET_NAME}
     
+rm data/${DATASET_NAME}/${DATASET_NAME}.train.c2s data/${DATASET_NAME}/${DATASET_NAME}.val.c2s
+
 # If all went well, the raw data files can be deleted, because preprocess.py creates new files 
 # with truncated and padded number of paths for each example.
 rm ${TRAIN_DATA_FILE} ${VAL_DATA_FILE} ${TEST_DATA_FILE} ${TARGET_HISTOGRAM_FILE} ${SOURCE_SUBTOKEN_HISTOGRAM} \
   ${NODE_HISTOGRAM_FILE}
 
-rm data/${DATASET_NAME}/${DATASET_NAME}.train.c2s data/${DATASET_NAME}/${DATASET_NAME}.val.c2s

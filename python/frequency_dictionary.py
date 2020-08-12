@@ -4,14 +4,11 @@ import sys
 import argparse
 import attack_config
 
-# CHANGE THESE PARAMETERS ###############################################
-
 # path to the dictionary in the dataset
-word_dictionary = attack_config.CONFIG['code2seq_model_dataset_dict']
+word_dictionary = os.path.abspath(attack_config.CONFIG['code2seq_model_dataset_dict'])
 
 # path to the dictionary in the trained model
-model_dictionary = attack_config.CONFIG['code2seq_model'] + '.dict'
-#########################################################################
+model_dictionary = os.path.abspath(attack_config.CONFIG['code2seq_model'] + '.dict')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

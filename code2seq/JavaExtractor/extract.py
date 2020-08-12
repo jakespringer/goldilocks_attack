@@ -34,13 +34,14 @@ def ExtractFeaturesForDir(args, dir, prefix):
     failed = False
     with open(outputFileName, 'a') as outputFile:
         sleeper = subprocess.Popen(command, stdout=outputFile, stderr=subprocess.PIPE)
-        timer = Timer(60 * 60, kill, [sleeper])
+        #timer = Timer(60 * 60 * 1000, kill, [sleeper])
 
         try:
-            timer.start()
+            #timer.start()
             stdout, stderr = sleeper.communicate()
         finally:
-            timer.cancel()
+            pass
+            #timer.cancel()
 
         if sleeper.poll() == 0:
             if len(stderr) > 0:

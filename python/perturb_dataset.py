@@ -5,7 +5,7 @@ import argparse
 import attack_config
 
 # path to the directory of .java files to perturb
-input_directory = attack_config.CONFIG['input_dataset']
+input_directory = os.path.abspath(attack_config.CONFIG['input_dataset'])
 
 def process_output(process, project, fname, output_directory):
     out, err = process.communicate()

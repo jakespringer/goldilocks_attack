@@ -1,10 +1,11 @@
 # Implementation of Goldilocks attack
-Jacob Springer Summer UROP
+From [add link to paper here]
+
+## Overview
 
 This is an implementation of the Goldilocks attack on code2seq. The attack
 is performed in a number of steps, but the automation script should do the
-heavy lifting of putting everything together. The hard part is installing 
-everything appropriately.
+heavy lifting of putting everything together. 
 
 ## Installation
 
@@ -14,16 +15,27 @@ dependencies listed in `python/requirements.txt`.
 2. You will need an installation of the Java Runtime Environment (version 8+). I
 recommend `sudo apt install default-jre`.
 
-3. Next, you will need to download and install code2seq (https://github.com/tech-srl/code2seq).
-You will need to download (or create) a trained model and a dataset to perturb. I recommend
-the model that code2seq provides for download and the java-small dataset, also provided by 
-code2seq. Add code2seq to your PYTHONPATH.
+3. This repository includes a modified implementation of code2seq (original can be found at 
+https://github.com/tech-srl/code2seq). Add our implementation of code2seq to your PYTHONPATH.
 
-4. Copy the file `bash/preprocess2.sh` into your code2seq installation directory; it is used by
-this code, but needs to be located in that directory.
+4. The file `python/attack_config.py` includes a few parameters that can be modified to 
+configure the attack, including the dataset to perturb and the code2seq model to use. Take a
+look at this file and determine the appropriate configuration. To reproduce the java-large
+results of the paper, you do not have to change this file.
 
-5. The files in the `python` directory,`automate.py`, `frequency_dictionary.py`, `l2_dictionary.py`, 
-`perturb_dataset.py` have a number of parameters that are labeled for change. Follow the
-instructions in each file.
+5. If you wish to reproduce the java-large results of the paper, you can run the script
+`bash/download-model-and-dataset.sh` and follow the instructions. Run this script from 
+the bash directory.
 
-6. To get results, run `automate.py --topk [topk] --dictionary [l2|frequency]`
+6. To get results, run `automate.py --topk [topk] --dictionary [l2|frequency|random] --type [same|different|single]`
+and look in the generated `data/results` folder. See instructions in the `./python` section for further details.
+
+## `./code2seq`
+
+## `./bash`
+
+## `./java`
+
+## `./python`
+
+## `./data`

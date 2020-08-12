@@ -16,10 +16,12 @@ from common import Common
 from extractor import Extractor
 import reader
 import _pickle as pickle
+import attack_config
+
 
 # CHANGE THIS ###################################################
 # path to the .release of the trained model
-model_release = '/home/jspring1/MIT_Workspace/code2seq/models/java-large-model/model_iter52.release'
+model_release = attack_config.CONFIG['code2seq_model']
 #################################################################
 
 if __name__ == '__main__':

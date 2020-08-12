@@ -2,14 +2,15 @@ import pickle
 import numpy as np
 import sys
 import argparse
+import attack_config
 
 # CHANGE THESE PARAMETERS ###############################################
 
 # path to the dictionary in the dataset
-word_dictionary = '/home/jspring1/MIT_Workspace/code2seq/models/java-large-model/java-large.dict.c2s'
+word_dictionary = attack_config.CONFIG['code2seq_model_dataset_dict']
 
 # path to the dictionary in the trained model
-model_dictionary = '/home/jspring1/MIT_Workspace/code2seq/models/java-large-model/model_iter52.release.dict'
+model_dictionary = attack_config.CONFIG['code2seq_model'] + '.dict'
 #########################################################################
 
 if __name__ == '__main__':

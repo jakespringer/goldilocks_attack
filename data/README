@@ -1,3 +1,0 @@
-To find intersection between frequency and L2:
-
-awk 'NR==FNR { lines[$0]=1; next } $0 in lines' l2_dictionary_10000.txt frequency_dictionary_10000.txt
